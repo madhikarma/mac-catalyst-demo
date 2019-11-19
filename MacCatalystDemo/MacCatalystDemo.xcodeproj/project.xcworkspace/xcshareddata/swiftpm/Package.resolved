@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "iTunesAPI",
+        "repositoryURL": "git@github.com:madhikarma/itunes-api-swift.git",
+        "state": {
+          "branch": null,
+          "revision": "a0f252ed4179bf132e70ce2bfe630758ab1b012d",
+          "version": "0.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

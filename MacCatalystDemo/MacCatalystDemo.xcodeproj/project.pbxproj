@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,7 @@
 		CDCE700B2383B8DC003C7468 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDCE70092383B8DC003C7468 /* LaunchScreen.storyboard */; };
 		CDCE70162383B8DD003C7468 /* MacCatalystDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE70152383B8DD003C7468 /* MacCatalystDemoTests.swift */; };
 		CDCE70212383B8DD003C7468 /* MacCatalystDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE70202383B8DD003C7468 /* MacCatalystDemoUITests.swift */; };
+		CDCE70312383BA6F003C7468 /* iTunesAPI in Frameworks */ = {isa = PBXBuildFile; productRef = CDCE70302383BA6F003C7468 /* iTunesAPI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDCE70312383BA6F003C7468 /* iTunesAPI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +151,9 @@
 			dependencies = (
 			);
 			name = MacCatalystDemo;
+			packageProductDependencies = (
+				CDCE70302383BA6F003C7468 /* iTunesAPI */,
+			);
 			productName = MacCatalystDemo;
 			productReference = CDCE6FF92383B8DB003C7468 /* MacCatalystDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -221,6 +226,9 @@
 				Base,
 			);
 			mainGroup = CDCE6FF02383B8DB003C7468;
+			packageReferences = (
+				CDCE702F2383BA6F003C7468 /* XCRemoteSwiftPackageReference "itunes-api-swift" */,
+			);
 			productRefGroup = CDCE6FFA2383B8DB003C7468 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -602,6 +610,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CDCE702F2383BA6F003C7468 /* XCRemoteSwiftPackageReference "itunes-api-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:madhikarma/itunes-api-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CDCE70302383BA6F003C7468 /* iTunesAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CDCE702F2383BA6F003C7468 /* XCRemoteSwiftPackageReference "itunes-api-swift" */;
+			productName = iTunesAPI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CDCE6FF12383B8DB003C7468 /* Project object */;
 }
