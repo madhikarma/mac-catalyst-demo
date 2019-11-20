@@ -9,23 +9,10 @@
 import UIKit
 import iTunesAPI
 
-protocol Artist {
-    var id: Int { get }
-    var name: String { get }
-}
-
-extension iTunesSearchResult: Artist {
-    var id: Int {
-        return artistId
-    }
-    var name: String {
-        return artistName
-    }
-}
 
 class MasterViewController: UITableViewController {
 
-    var detailViewController: DetailViewController? = nil
+    var detailViewController: GridViewController? = nil
     private(set) var artists: [Artist] = []
     let searchAPI = iTunesSearchAPI()
 
@@ -41,7 +28,7 @@ class MasterViewController: UITableViewController {
         navigationItem.rightBarButtonItem = addButton
         if let split = splitViewController {
             let controllers = split.viewControllers
-            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? GridViewController
         }
         
         print("get results...")
@@ -74,7 +61,7 @@ class MasterViewController: UITableViewController {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let artist = artists[indexPath.row]
-                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
+                let controller = (segue.destination as! UINavigationController).topViewController as! GridViewController
                 controller.artist = artist
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
