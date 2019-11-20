@@ -7,17 +7,29 @@
 //
 
 import UIKit
-
+import iTunesAPI
 private let reuseIdentifier = "GridCell"
 
 class GridViewController: UICollectionViewController {
 
     var artist: Artist? {
-        didSet {
-            configureView()
+        didSet(newValue){
+            if let newArtist = newValue {
+                iTunesSearchAPI().lookup(id: newArtist.id, parameters: ["entity": "album"]) { (result) in
+                    switch result {
+                    case .success(let values):
+                        self.albums = values
+                        self.configureView()
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            } else {
+                print("no artist")
+            }
         }
     }
-    var albums: [Album] = []
+    private(set) var albums: [Album] = []
     
     
     // MARK: - View lifecycle
@@ -52,7 +64,7 @@ class GridViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 500
+        return albums.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -61,9 +73,9 @@ class GridViewController: UICollectionViewController {
         }
     
         // Configure the cell
-//        let album = albums[indexPath.row]
-//        cell.titleLabel.text = album.name
-        cell.titleLabel?.text = "hello"
+        let album = albums[indexPath.row]
+        cell.titleLabel?.text = album.albumName
+//        cell.titleLabel?.text = "hello"
         cell.contentView.backgroundColor = .blue
         return cell
     }

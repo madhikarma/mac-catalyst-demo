@@ -9,5 +9,5 @@
 import Foundation
 
 protocol Album {
-    var name: String { get }
+    var albumName: String { get }
 }

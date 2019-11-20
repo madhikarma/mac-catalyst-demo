@@ -115,19 +115,19 @@
 			isa = PBXGroup;
 			children = (
 				CDCE702E2383B950003C7468 /* MacCatalystDemo.entitlements */,
+				CDCE700C2383B8DC003C7468 /* Info.plist */,
+				CDCE70342383C307003C7468 /* Album.swift */,
 				CDCE6FFC2383B8DB003C7468 /* AppDelegate.swift */,
-				CDCE6FFE2383B8DB003C7468 /* SceneDelegate.swift */,
-				CDCE70002383B8DB003C7468 /* MasterViewController.swift */,
+				CDCE70362383C30E003C7468 /* Artist.swift */,
 				CDCE70022383B8DB003C7468 /* DetailViewController.swift */,
-				CDCE70042383B8DB003C7468 /* Main.storyboard */,
+				CDCE703A2383C463003C7468 /* GridCell.swift */,
+				CDCE70322383C1AB003C7468 /* GridViewController.swift */,
+				CDCE70382383C342003C7468 /* iTunesSearchResult+Artist.swift */,
+				CDCE70002383B8DB003C7468 /* MasterViewController.swift */,
+				CDCE6FFE2383B8DB003C7468 /* SceneDelegate.swift */,
 				CDCE70072383B8DC003C7468 /* Assets.xcassets */,
 				CDCE70092383B8DC003C7468 /* LaunchScreen.storyboard */,
-				CDCE700C2383B8DC003C7468 /* Info.plist */,
-				CDCE70322383C1AB003C7468 /* GridViewController.swift */,
-				CDCE70342383C307003C7468 /* Album.swift */,
-				CDCE70362383C30E003C7468 /* Artist.swift */,
-				CDCE70382383C342003C7468 /* iTunesSearchResult+Artist.swift */,
-				CDCE703A2383C463003C7468 /* GridCell.swift */,
+				CDCE70042383B8DB003C7468 /* Main.storyboard */,
 			);
 			path = MacCatalystDemo;
 			sourceTree = "<group>";
