@@ -16,10 +16,7 @@ extension iTunesSearchResult: Artist {
     var name: String {
         return artistName
     }
-}
-
-extension iTunesSearchResult: Album {
-    var albumName: String {
-        return self.collectionName!
+    var artistImageURL: URL? {
+        return self.artworkUrl100
     }
 }

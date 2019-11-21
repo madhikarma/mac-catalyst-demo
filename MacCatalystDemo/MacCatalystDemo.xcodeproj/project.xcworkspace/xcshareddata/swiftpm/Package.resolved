@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "ImageManager",
+        "repositoryURL": "git@github.com:madhikarma/image-manager-swift.git",
+        "state": {
+          "branch": null,
+          "revision": "ba5907bbd92b41a85474356592fe8d6acead0363",
+          "version": "0.3.0"
+        }
+      },
+      {
         "package": "iTunesAPI",
         "repositoryURL": "git@github.com:madhikarma/itunes-api-swift.git",
         "state": {

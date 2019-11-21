@@ -10,7 +10,6 @@
 		CDCE6FFD2383B8DB003C7468 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE6FFC2383B8DB003C7468 /* AppDelegate.swift */; };
 		CDCE6FFF2383B8DB003C7468 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE6FFE2383B8DB003C7468 /* SceneDelegate.swift */; };
 		CDCE70012383B8DB003C7468 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE70002383B8DB003C7468 /* MasterViewController.swift */; };
-		CDCE70032383B8DB003C7468 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE70022383B8DB003C7468 /* DetailViewController.swift */; };
 		CDCE70062383B8DB003C7468 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDCE70042383B8DB003C7468 /* Main.storyboard */; };
 		CDCE70082383B8DC003C7468 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDCE70072383B8DC003C7468 /* Assets.xcassets */; };
 		CDCE700B2383B8DC003C7468 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDCE70092383B8DC003C7468 /* LaunchScreen.storyboard */; };
@@ -21,7 +20,10 @@
 		CDCE70352383C307003C7468 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE70342383C307003C7468 /* Album.swift */; };
 		CDCE70372383C30E003C7468 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE70362383C30E003C7468 /* Artist.swift */; };
 		CDCE70392383C342003C7468 /* iTunesSearchResult+Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE70382383C342003C7468 /* iTunesSearchResult+Artist.swift */; };
-		CDCE703B2383C463003C7468 /* GridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE703A2383C463003C7468 /* GridCell.swift */; };
+		CDF2DA5223866F29000DD3E0 /* GridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF2DA5023866F29000DD3E0 /* GridCollectionViewCell.swift */; };
+		CDF2DA5323866F29000DD3E0 /* GridCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDF2DA5123866F29000DD3E0 /* GridCollectionViewCell.xib */; };
+		CDF2DA56238673A2000DD3E0 /* ImageManager in Frameworks */ = {isa = PBXBuildFile; productRef = CDF2DA55238673A2000DD3E0 /* ImageManager */; };
+		CDF2DA582386761C000DD3E0 /* iTunesSearchResult+Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF2DA572386761C000DD3E0 /* iTunesSearchResult+Album.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +48,6 @@
 		CDCE6FFC2383B8DB003C7468 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDCE6FFE2383B8DB003C7468 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CDCE70002383B8DB003C7468 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		CDCE70022383B8DB003C7468 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		CDCE70052383B8DB003C7468 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CDCE70072383B8DC003C7468 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDCE700A2383B8DC003C7468 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -62,7 +63,9 @@
 		CDCE70342383C307003C7468 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		CDCE70362383C30E003C7468 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		CDCE70382383C342003C7468 /* iTunesSearchResult+Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iTunesSearchResult+Artist.swift"; sourceTree = "<group>"; };
-		CDCE703A2383C463003C7468 /* GridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCell.swift; sourceTree = "<group>"; };
+		CDF2DA5023866F29000DD3E0 /* GridCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionViewCell.swift; sourceTree = "<group>"; };
+		CDF2DA5123866F29000DD3E0 /* GridCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridCollectionViewCell.xib; sourceTree = "<group>"; };
+		CDF2DA572386761C000DD3E0 /* iTunesSearchResult+Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iTunesSearchResult+Album.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDF2DA56238673A2000DD3E0 /* ImageManager in Frameworks */,
 				CDCE70312383BA6F003C7468 /* iTunesAPI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -119,13 +123,14 @@
 				CDCE70342383C307003C7468 /* Album.swift */,
 				CDCE6FFC2383B8DB003C7468 /* AppDelegate.swift */,
 				CDCE70362383C30E003C7468 /* Artist.swift */,
-				CDCE70022383B8DB003C7468 /* DetailViewController.swift */,
-				CDCE703A2383C463003C7468 /* GridCell.swift */,
+				CDF2DA5023866F29000DD3E0 /* GridCollectionViewCell.swift */,
 				CDCE70322383C1AB003C7468 /* GridViewController.swift */,
+				CDF2DA572386761C000DD3E0 /* iTunesSearchResult+Album.swift */,
 				CDCE70382383C342003C7468 /* iTunesSearchResult+Artist.swift */,
 				CDCE70002383B8DB003C7468 /* MasterViewController.swift */,
 				CDCE6FFE2383B8DB003C7468 /* SceneDelegate.swift */,
 				CDCE70072383B8DC003C7468 /* Assets.xcassets */,
+				CDF2DA5123866F29000DD3E0 /* GridCollectionViewCell.xib */,
 				CDCE70092383B8DC003C7468 /* LaunchScreen.storyboard */,
 				CDCE70042383B8DB003C7468 /* Main.storyboard */,
 			);
@@ -168,6 +173,7 @@
 			name = MacCatalystDemo;
 			packageProductDependencies = (
 				CDCE70302383BA6F003C7468 /* iTunesAPI */,
+				CDF2DA55238673A2000DD3E0 /* ImageManager */,
 			);
 			productName = MacCatalystDemo;
 			productReference = CDCE6FF92383B8DB003C7468 /* MacCatalystDemo.app */;
@@ -243,6 +249,7 @@
 			mainGroup = CDCE6FF02383B8DB003C7468;
 			packageReferences = (
 				CDCE702F2383BA6F003C7468 /* XCRemoteSwiftPackageReference "itunes-api-swift" */,
+				CDF2DA54238673A2000DD3E0 /* XCRemoteSwiftPackageReference "image-manager-swift" */,
 			);
 			productRefGroup = CDCE6FFA2383B8DB003C7468 /* Products */;
 			projectDirPath = "";
@@ -260,6 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDF2DA5323866F29000DD3E0 /* GridCollectionViewCell.xib in Resources */,
 				CDCE700B2383B8DC003C7468 /* LaunchScreen.storyboard in Resources */,
 				CDCE70082383B8DC003C7468 /* Assets.xcassets in Resources */,
 				CDCE70062383B8DB003C7468 /* Main.storyboard in Resources */,
@@ -290,10 +298,10 @@
 				CDCE6FFD2383B8DB003C7468 /* AppDelegate.swift in Sources */,
 				CDCE70392383C342003C7468 /* iTunesSearchResult+Artist.swift in Sources */,
 				CDCE70332383C1AB003C7468 /* GridViewController.swift in Sources */,
+				CDF2DA5223866F29000DD3E0 /* GridCollectionViewCell.swift in Sources */,
 				CDCE6FFF2383B8DB003C7468 /* SceneDelegate.swift in Sources */,
 				CDCE70012383B8DB003C7468 /* MasterViewController.swift in Sources */,
-				CDCE703B2383C463003C7468 /* GridCell.swift in Sources */,
-				CDCE70032383B8DB003C7468 /* DetailViewController.swift in Sources */,
+				CDF2DA582386761C000DD3E0 /* iTunesSearchResult+Album.swift in Sources */,
 				CDCE70352383C307003C7468 /* Album.swift in Sources */,
 				CDCE70372383C30E003C7468 /* Artist.swift in Sources */,
 			);
@@ -640,6 +648,14 @@
 				minimumVersion = 0.1.0;
 			};
 		};
+		CDF2DA54238673A2000DD3E0 /* XCRemoteSwiftPackageReference "image-manager-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:madhikarma/image-manager-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -647,6 +663,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CDCE702F2383BA6F003C7468 /* XCRemoteSwiftPackageReference "itunes-api-swift" */;
 			productName = iTunesAPI;
+		};
+		CDF2DA55238673A2000DD3E0 /* ImageManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CDF2DA54238673A2000DD3E0 /* XCRemoteSwiftPackageReference "image-manager-swift" */;
+			productName = ImageManager;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

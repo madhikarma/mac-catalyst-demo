@@ -8,14 +8,20 @@
 
 import UIKit
 import iTunesAPI
-private let reuseIdentifier = "GridCell"
+import ImageManager
+
+private let reuseIdentifier = "GridCollectionViewCell"
 
 class GridViewController: UICollectionViewController {
 
-    var artist: Artist? {
-        didSet(newValue){
-            if let newArtist = newValue {
-                iTunesSearchAPI().lookup(id: newArtist.id, parameters: ["entity": "album"]) { (result) in
+    let imageManager = ImageManager()
+    let itunesAPI = iTunesSearchAPI()
+    var artist: iTunesSearchResult? {
+        didSet {
+            print("didSetArtist")
+            if let id = artist?.id {
+                print("artist")
+                itunesAPI.lookup(id: id, parameters: ["entity": "album"]) { (result) in
                     switch result {
                     case .success(let values):
                         self.albums = values
@@ -36,7 +42,8 @@ class GridViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView!.register(GridCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        let nib = UINib(nibName: "GridCollectionViewCell", bundle: nil)
+        self.collectionView!.register(nib, forCellWithReuseIdentifier: "GridCollectionViewCell")
     }
     
     private func configureView() {
@@ -68,14 +75,26 @@ class GridViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? GridCell else {
-            fatalError("Error: expected GridCell")
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GridCollectionViewCell", for: indexPath) as? GridCollectionViewCell else {
+            fatalError("Error: expected GridCollectionViewCell")
         }
     
         // Configure the cell
         let album = albums[indexPath.row]
+        print(album)
+        
         cell.titleLabel?.text = album.albumName
-//        cell.titleLabel?.text = "hello"
+        if let imageURL = album.albumImageURL {
+            imageManager.loadImage(for: imageURL) { [unowned self] (result) in
+                switch (result) {
+                case .success(let image):
+                    cell.imageView.image = image
+                case .failure(let error):
+                    cell.imageView.image = nil
+                    print()
+                }
+            }
+        }
         cell.contentView.backgroundColor = .blue
         return cell
     }

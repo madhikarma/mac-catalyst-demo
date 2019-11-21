@@ -11,4 +11,5 @@ import Foundation
 protocol Artist {
     var id: Int { get }
     var name: String { get }
+    var artistImageURL: URL? { get }
 }
