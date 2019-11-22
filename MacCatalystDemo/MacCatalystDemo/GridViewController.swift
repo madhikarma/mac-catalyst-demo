@@ -10,6 +10,16 @@ import UIKit
 import iTunesAPI
 import ImageManager
 
+class ViewController: UIViewController {
+    override func loadView() {
+        self.view = UIView()
+    }
+    override func viewDidLoad() {
+        view.backgroundColor = .brown
+    }
+}
+
+
 private let reuseIdentifier = "GridCollectionViewCell"
 
 class GridViewController: UIViewController {
@@ -112,6 +122,16 @@ extension GridViewController: UICollectionViewDataSource {
     }
 }
 
+
+
+// MARK: - UICollectionViewDelegate
+
+extension GridViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("didSelect")
+        self.present(ViewController(), animated: true, completion: nil)
+    }
+}
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
