@@ -8,14 +8,30 @@
 
 import UIKit
 
-class GridCollectionViewCell: UICollectionViewCell {
+final class GridCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet private(set) weak var imageView: UIImageView!
+    @IBOutlet private(set) weak var titleLabel: UILabel!
+    
+    
+    // MARK: - Lifecycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        clearContent()
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        clearContent()
+    }
+    
+
+    // MARK: - Private
+    
+    private func clearContent() {
+        titleLabel.text = nil
+        imageView.image = nil
     }
 
 }
