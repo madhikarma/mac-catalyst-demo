@@ -55,9 +55,11 @@ class AlbumViewController: UIViewController {
     
     private let album: Album
     var index: Int = 0
+    private let imageManager: ImageManager
     
-    init(album: Album) {
+    init(album: Album, imageManager: ImageManager) {
         self.album = album
+        self.imageManager = imageManager
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -77,7 +79,7 @@ class AlbumViewController: UIViewController {
         navigationItem.title = album.albumName
         
         guard let imageURL = album.albumImageURL else { return }
-        ImageManager().loadImage(for: imageURL, completion: { (result) in
+        imageManager.loadImage(for: imageURL, completion: { (result) in
             switch result {
             case .success(let image):
                 albumView.imageView.image = image
@@ -93,10 +95,12 @@ final class AlbumScrollViewController: UIPageViewController {
     
     private var orderedViewControllers: [AlbumViewController] = []
     private(set) var albums: [Album] = []
-    
-    init(albums: [Album]) {
-        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    private let imageManager: ImageManager
+
+    init(albums: [Album], imageManager: ImageManager) {
         self.albums = albums
+        self.imageManager = imageManager
+        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -112,7 +116,7 @@ final class AlbumScrollViewController: UIPageViewController {
         view.backgroundColor = .brown
         
         for (index, album) in albums.enumerated() {
-            let vc = AlbumViewController(album: album)
+            let vc = AlbumViewController(album: album, imageManager: imageManager)
             vc.index = index
             orderedViewControllers.append(vc)
         }

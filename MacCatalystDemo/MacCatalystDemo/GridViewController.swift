@@ -119,7 +119,7 @@ extension GridViewController: UICollectionViewDataSource {
 extension GridViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("didSelect")
-        let viewController = AlbumScrollViewController(albums: albums)
+        let viewController = AlbumScrollViewController(albums: albums, imageManager: imageManager)
         let navigationController = UINavigationController(rootViewController: viewController)
         self.present(navigationController, animated: true, completion: nil)
     }
