@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CDC3E7AD238C309300D29906 /* AlbumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC3E7AC238C309300D29906 /* AlbumDetailViewController.swift */; };
 		CDCE6FFD2383B8DB003C7468 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE6FFC2383B8DB003C7468 /* AppDelegate.swift */; };
 		CDCE6FFF2383B8DB003C7468 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE6FFE2383B8DB003C7468 /* SceneDelegate.swift */; };
 		CDCE70012383B8DB003C7468 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCE70002383B8DB003C7468 /* MasterViewController.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CDC3E7AC238C309300D29906 /* AlbumDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailViewController.swift; sourceTree = "<group>"; };
 		CDCE6FF92383B8DB003C7468 /* MacCatalystDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacCatalystDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDCE6FFC2383B8DB003C7468 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDCE6FFE2383B8DB003C7468 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				CDF2DA5123866F29000DD3E0 /* GridCollectionViewCell.xib */,
 				CDCE70092383B8DC003C7468 /* LaunchScreen.storyboard */,
 				CDCE70042383B8DB003C7468 /* Main.storyboard */,
+				CDC3E7AC238C309300D29906 /* AlbumDetailViewController.swift */,
 			);
 			path = MacCatalystDemo;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				CDCE70332383C1AB003C7468 /* GridViewController.swift in Sources */,
 				CDF2DA5223866F29000DD3E0 /* GridCollectionViewCell.swift in Sources */,
 				CDCE6FFF2383B8DB003C7468 /* SceneDelegate.swift in Sources */,
+				CDC3E7AD238C309300D29906 /* AlbumDetailViewController.swift in Sources */,
 				CDCE70012383B8DB003C7468 /* MasterViewController.swift in Sources */,
 				CDF2DA582386761C000DD3E0 /* iTunesSearchResult+Album.swift in Sources */,
 				CDCE70352383C307003C7468 /* Album.swift in Sources */,
