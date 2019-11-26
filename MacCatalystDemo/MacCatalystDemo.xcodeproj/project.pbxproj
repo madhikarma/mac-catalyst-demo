@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CD3EB737238CDA3700F4865C /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EB736238CDA3700F4865C /* Config.swift */; };
+		CD3EB739238CDF7200F4865C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD3EB738238CDF7200F4865C /* Settings.bundle */; };
+		CD972963238CE42000A71656 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD972962238CE42000A71656 /* SearchViewController.swift */; };
 		CDC3E7AD238C309300D29906 /* AlbumScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC3E7AC238C309300D29906 /* AlbumScrollViewController.swift */; };
 		CDC3E7AF238C4C8200D29906 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC3E7AE238C4C8200D29906 /* AlbumView.swift */; };
 		CDC3E7B1238C4C9A00D29906 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC3E7B0238C4C9A00D29906 /* AlbumViewController.swift */; };
@@ -49,6 +51,8 @@
 
 /* Begin PBXFileReference section */
 		CD3EB736238CDA3700F4865C /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		CD3EB738238CDF7200F4865C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		CD972962238CE42000A71656 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		CDC3E7AC238C309300D29906 /* AlbumScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumScrollViewController.swift; sourceTree = "<group>"; };
 		CDC3E7AE238C4C8200D29906 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		CDC3E7B0238C4C9A00D29906 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +107,81 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD3EB73A238CE09400F4865C /* Master */ = {
+			isa = PBXGroup;
+			children = (
+				CDCE70002383B8DB003C7468 /* MasterViewController.swift */,
+			);
+			path = Master;
+			sourceTree = "<group>";
+		};
+		CD3EB73B238CE09F00F4865C /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				CD3EB740238CE15700F4865C /* Album */,
+				CD3EB73F238CE13D00F4865C /* Grid */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		CD3EB73C238CE0B700F4865C /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				CD3EB73E238CE0E600F4865C /* Application */,
+				CD3EB73D238CE0D700F4865C /* Model */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		CD3EB73D238CE0D700F4865C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CD3EB736238CDA3700F4865C /* Config.swift */,
+				CDCE70342383C307003C7468 /* Album.swift */,
+				CDCE70362383C30E003C7468 /* Artist.swift */,
+				CDF2DA572386761C000DD3E0 /* iTunesSearchResult+Album.swift */,
+				CDCE70382383C342003C7468 /* iTunesSearchResult+Artist.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CD3EB73E238CE0E600F4865C /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				CDCE6FFC2383B8DB003C7468 /* AppDelegate.swift */,
+				CDCE6FFE2383B8DB003C7468 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		CD3EB73F238CE13D00F4865C /* Grid */ = {
+			isa = PBXGroup;
+			children = (
+				CDF2DA5123866F29000DD3E0 /* GridCollectionViewCell.xib */,
+				CDF2DA5023866F29000DD3E0 /* GridCollectionViewCell.swift */,
+				CDCE70322383C1AB003C7468 /* GridViewController.swift */,
+			);
+			path = Grid;
+			sourceTree = "<group>";
+		};
+		CD3EB740238CE15700F4865C /* Album */ = {
+			isa = PBXGroup;
+			children = (
+				CDC3E7AC238C309300D29906 /* AlbumScrollViewController.swift */,
+				CDC3E7AE238C4C8200D29906 /* AlbumView.swift */,
+				CDC3E7B0238C4C9A00D29906 /* AlbumViewController.swift */,
+			);
+			path = Album;
+			sourceTree = "<group>";
+		};
+		CD972961238CE41000A71656 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				CD972962238CE42000A71656 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		CDCE6FF02383B8DB003C7468 = {
 			isa = PBXGroup;
 			children = (
@@ -126,25 +205,16 @@
 		CDCE6FFB2383B8DB003C7468 /* MacCatalystDemo */ = {
 			isa = PBXGroup;
 			children = (
+				CD3EB738238CDF7200F4865C /* Settings.bundle */,
 				CDCE702E2383B950003C7468 /* MacCatalystDemo.entitlements */,
 				CDCE700C2383B8DC003C7468 /* Info.plist */,
-				CDCE70342383C307003C7468 /* Album.swift */,
-				CDCE6FFC2383B8DB003C7468 /* AppDelegate.swift */,
-				CDCE70362383C30E003C7468 /* Artist.swift */,
-				CDF2DA5023866F29000DD3E0 /* GridCollectionViewCell.swift */,
-				CDCE70322383C1AB003C7468 /* GridViewController.swift */,
-				CDF2DA572386761C000DD3E0 /* iTunesSearchResult+Album.swift */,
-				CDCE70382383C342003C7468 /* iTunesSearchResult+Artist.swift */,
-				CDCE70002383B8DB003C7468 /* MasterViewController.swift */,
-				CDCE6FFE2383B8DB003C7468 /* SceneDelegate.swift */,
 				CDCE70072383B8DC003C7468 /* Assets.xcassets */,
-				CDF2DA5123866F29000DD3E0 /* GridCollectionViewCell.xib */,
+				CD3EB73B238CE09F00F4865C /* Detail */,
 				CDCE70092383B8DC003C7468 /* LaunchScreen.storyboard */,
 				CDCE70042383B8DB003C7468 /* Main.storyboard */,
-				CDC3E7AC238C309300D29906 /* AlbumScrollViewController.swift */,
-				CDC3E7AE238C4C8200D29906 /* AlbumView.swift */,
-				CDC3E7B0238C4C9A00D29906 /* AlbumViewController.swift */,
-				CD3EB736238CDA3700F4865C /* Config.swift */,
+				CD3EB73A238CE09400F4865C /* Master */,
+				CD972961238CE41000A71656 /* Search */,
+				CD3EB73C238CE0B700F4865C /* Shared */,
 			);
 			path = MacCatalystDemo;
 			sourceTree = "<group>";
@@ -281,6 +351,7 @@
 			files = (
 				CDF2DA5323866F29000DD3E0 /* GridCollectionViewCell.xib in Resources */,
 				CDCE700B2383B8DC003C7468 /* LaunchScreen.storyboard in Resources */,
+				CD3EB739238CDF7200F4865C /* Settings.bundle in Resources */,
 				CDCE70082383B8DC003C7468 /* Assets.xcassets in Resources */,
 				CDCE70062383B8DB003C7468 /* Main.storyboard in Resources */,
 			);
@@ -315,6 +386,7 @@
 				CDF2DA5223866F29000DD3E0 /* GridCollectionViewCell.swift in Sources */,
 				CD3EB737238CDA3700F4865C /* Config.swift in Sources */,
 				CDCE6FFF2383B8DB003C7468 /* SceneDelegate.swift in Sources */,
+				CD972963238CE42000A71656 /* SearchViewController.swift in Sources */,
 				CDC3E7AD238C309300D29906 /* AlbumScrollViewController.swift in Sources */,
 				CDCE70012383B8DB003C7468 /* MasterViewController.swift in Sources */,
 				CDF2DA582386761C000DD3E0 /* iTunesSearchResult+Album.swift in Sources */,

@@ -9,7 +9,6 @@
 import UIKit
 import iTunesAPI
 
-
 class MasterViewController: UITableViewController {
 
     var detailViewController: GridViewController? = nil
@@ -24,7 +23,7 @@ class MasterViewController: UITableViewController {
         // Do any additional setup after loading the view.
         navigationItem.leftBarButtonItem = editButtonItem
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add(_:)))
         navigationItem.rightBarButtonItem = addButton
         if let split = splitViewController {
             let controllers = split.viewControllers
@@ -32,18 +31,24 @@ class MasterViewController: UITableViewController {
         }
         
         print("get results...")
-        searchAPI.getResults(searchTerm: "Bonobo") { (result) in
+        searchAPI.getResults(searchTerm: "Bonobo") { [weak self] (result) in
+            guard let self = self else {
+                return
+            }
             switch result {
             case .success(let searchResults):
                 print("success...")
                 self.artists = searchResults
                 print(searchResults)
                 self.tableView.reloadData()
+                self.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
             case .failure(let error):
                 print("error...")
                 print(error)
             }
         }
+        
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -51,21 +56,16 @@ class MasterViewController: UITableViewController {
         super.viewWillAppear(animated)
     }
 
+    
+    // MARK: - Actions
+    
     @objc
-    func insertNewObject(_ sender: Any) {
+    func add(_ sender: Any) {
+        let searchViewController = SearchViewController()
+        present(searchViewController, animated: true, completion: nil)
     }
 
-    // MARK: - Segues
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("prepare")
-        if segue.identifier == "showDetail" {
-            let indexPath = tableView.indexPathForSelectedRow!
-            let controller = (segue.destination as! UINavigationController).topViewController as! GridViewController
-            showDetail(indexPath: indexPath, detail: controller)
-        }
-    }
-
+    
     // MARK: - Table View
 
     override func numberOfSections(in tableView: UITableView) -> Int {
