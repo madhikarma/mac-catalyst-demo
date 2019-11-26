@@ -7,52 +7,37 @@
 //
 
 import UIKit
+import iTunesAPI
 
 let cellIdentifier = "searchResultsCellIdentifier"
 
-struct Footballer {
-  var name: String
-  var league: String
-}
-
-let allPlayers = [
-  Footballer(name: "Ronaldo", league: "Seria A"),
-  Footballer(name: "Messi", league: "La liga"),
-  Footballer(name: "Ozil", league: "Premier League"),
-  Footballer(name: "Rooney", league: "MLS"),
-  Footballer(name: "Neymar", league: "Ligue One"),
-  Footballer(name: "Cavani", league: "Ligue One"),
-  Footballer(name: "Dybala", league: "Seria A"),
-  Footballer(name: "Robben", league: "Bundesliga"),
-  Footballer(name: "James", league: "Bundesliga"),
-  Footballer(name: "Lukaku", league: "Premier League"),
-  Footballer(name: "Kane", league: "Premier League"),
-  Footballer(name: "Cech", league: "Premier League"),
-  Footballer(name: "Pogba", league: "Premier League"),
-  Footballer(name: "Bale", league: "La liga")
-]
-
-
 class SearchViewController: UIViewController {
 
-    private let tableView = UITableView()
-    let searchController = UISearchController(searchResultsController: nil)
-    var filteredFootballer = [Footballer]()
-
+    fileprivate let tableView = UITableView()
+    fileprivate let searchController = UISearchController(searchResultsController: nil)
+    fileprivate let searchAPI = iTunesSearchAPI()
+    fileprivate var searchResults: [iTunesSearchResult] = []
+    fileprivate var pendingSearchTasks: [URLSessionTask] = []
+    
+    
+    // MARK: - View lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .darkGray
-        tableView.dataSource = self
-        searchController.searchResultsUpdater = self
-//        searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
-        tableView.tableHeaderView = searchController.searchBar
-        searchController.searchBar.tintColor = UIColor.white
-        searchController.searchBar.barTintColor = .red
         
+        //        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.tintColor = .white
+        searchController.searchBar.placeholder = "Type to search for your artist to add"
+        
+        tableView.tableHeaderView = searchController.searchBar
+        tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         view.addSubview(tableView)
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
@@ -61,40 +46,22 @@ class SearchViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
         ])
     }
-    
-    fileprivate func filterFootballers(for searchText: String) {
-      filteredFootballer = allPlayers.filter { footballer in
-        return
-          footballer.name.lowercased().contains(searchText.lowercased())
-      }
-      tableView.reloadData()
-    }
-
 }
 
 
 // MARK: - UITableViewDataSource
 
 extension SearchViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      if searchController.isActive && searchController.searchBar.text != "" {
-        return filteredFootballer.count
-      }
-      return allPlayers.count
+      return searchResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-      
-      let footballer: Footballer
-      if searchController.isActive && searchController.searchBar.text != "" {
-        footballer = filteredFootballer[indexPath.row]
-      } else {
-        footballer = allPlayers[indexPath.row]
-      }
-      
-      cell.textLabel?.text = footballer.name
-      cell.detailTextLabel?.text = footballer.league
+      let searchResult = searchResults[indexPath.row]
+      cell.textLabel?.text = searchResult.artistName
+      cell.detailTextLabel?.text = "\(searchResult.artistId)"
       return cell
     }
 }
@@ -105,6 +72,24 @@ extension SearchViewController: UITableViewDataSource {
 extension SearchViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        filterFootballers(for: searchController.searchBar.text ?? "")
+        
+        print("updateSearchResults")
+//        filterFootballers(for: searchController.searchBar.text ?? "")
+        guard let searchBarText = searchController.searchBar.text else { return }
+        
+        pendingSearchTasks.forEach { $0.cancel() }
+        let searchTask = searchAPI.getResults(searchTerm: searchBarText) { [weak self] (result) in
+            guard let self = self else { return }
+            switch (result) {
+            case .success(let results):
+                self.searchResults = results
+            case .failure(let error):
+                print(error)
+                self.searchResults = []
+            }
+            self.tableView.reloadData()
+        }
+        pendingSearchTasks.append(searchTask)
+        
     }
 }
