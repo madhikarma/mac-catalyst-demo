@@ -171,3 +171,66 @@ extension GridViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: 200, height: 200)
     }
 }
+
+
+// MARK: - UICollectionViewDragDelegate
+
+extension GridViewController: UICollectionViewDropDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
+        
+    }
+
+    
+    /* If NO is returned no further delegate methods will be called for this drop session.
+     * If not implemented, a default value of YES is assumed.
+     */
+//    optional func collectionView(_ collectionView: UICollectionView, canHandle session: UIDropSession) -> Bool {
+//
+//    }
+
+    
+    /* Called when the drop session begins tracking in the collection view's coordinate space.
+     */
+    func collectionView(_ collectionView: UICollectionView, dropSessionDidEnter session: UIDropSession) {
+        print(#function)
+    }
+
+    
+    /* Called frequently while the drop session being tracked inside the collection view's coordinate space.
+     * When the drop is at the end of a section, the destination index path passed will be for a item that does not yet exist (equal
+     * to the number of items in that section), where an inserted item would append to the end of the section.
+     * The destination index path may be nil in some circumstances (e.g. when dragging over empty space where there are no cells).
+     * Note that in some cases your proposal may not be allowed and the system will enforce a different proposal.
+     * You may perform your own hit testing via -[UIDropSession locationInView]
+     */
+//    func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
+//        print(#function)
+//    }
+
+    
+    /* Called when the drop session is no longer being tracked inside the collection view's coordinate space.
+     */
+    func collectionView(_ collectionView: UICollectionView, dropSessionDidExit session: UIDropSession) {
+        print(#function)
+    }
+
+    
+    /* Called when the drop session completed, regardless of outcome. Useful for performing any cleanup.
+     */
+    func collectionView(_ collectionView: UICollectionView, dropSessionDidEnd session: UIDropSession) {
+        print(#function)
+    }
+
+    
+    /* Allows customization of the preview used for the item being dropped.
+     * If not implemented or if nil is returned, the entire cell will be used for the preview.
+     *
+     * This will be called as needed when animating drops via -[UICollectionViewDropCoordinator dropItem:toItemAtIndexPath:]
+     * (to customize placeholder drops, please see UICollectionViewDropPlaceholder.previewParametersProvider)
+     */
+//    func collectionView(_ collectionView: UICollectionView, dropPreviewParametersForItemAt indexPath: IndexPath) -> UIDragPreviewParameters? {
+//
+//    }
+
+}
