@@ -9,13 +9,22 @@
 import UIKit
 import iTunesAPI
 
-let cellIdentifier = "searchResultsCellIdentifier"
-
 protocol SearchViewControllerDelegate: class {
     func searchViewControllerDidSelectResult(_ controller: SearchViewController, result: iTunesSearchResult)
     func searchViewControllerDidPressCancel(_ controller: SearchViewController)
 }
 
+class SearchResultCell: UITableViewCell {
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .blue
+    }
+}
 final class SearchViewController: UIViewController {
 
     fileprivate let tableView = UITableView()
@@ -37,14 +46,16 @@ final class SearchViewController: UIViewController {
         self.definesPresentationContext = true
         searchController.searchResultsUpdater = self
         searchController.searchBar.tintColor = .white
+        searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Type to search for your artist to add"
         
         tableView.tableHeaderView = searchController.searchBar
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        tableView.register(SearchResultCell.self, forCellReuseIdentifier: "SearchResultCell")
         view.addSubview(tableView)
         
+        tableView.allowsSelection = true
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
@@ -52,9 +63,24 @@ final class SearchViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
         ])
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didPressCancel))
+    }
+    
+    @objc func didPressCancel() {
+        delegate?.searchViewControllerDidPressCancel(self)
     }
 }
 
+
+extension SearchViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        print("\(#function)")
+//        searchController.dismiss(animated: true, completion: nil)
+//        searchController.isActive = false
+    }
+}
 
 // MARK: - UITableViewDataSource
 
@@ -66,7 +92,7 @@ extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("\(#function)")
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as! SearchResultCell
         let searchResult = searchResults[indexPath.row]
         cell.textLabel?.text = "\(searchResult.artistName) (id: \(searchResult.artistId))"
       return cell
@@ -80,7 +106,7 @@ extension SearchViewController: UITableViewDelegate {
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(#function)")
-        searchController.dismiss(animated: false, completion: nil)
+//        searchController.dismiss(animated: false, completion: nil)
         let result = searchResults[indexPath.row]
         delegate?.searchViewControllerDidSelectResult(self, result: result)
     }

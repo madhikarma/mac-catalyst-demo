@@ -44,6 +44,10 @@ class GridViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+//        navigationItem.leftItemsSupplementBackButton = true
+
+        
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.scrollDirection = .vertical
         self.collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)

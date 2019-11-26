@@ -24,7 +24,7 @@ class MasterViewController: UITableViewController {
         // Do any additional setup after loading the view.
         navigationItem.leftBarButtonItem = editButtonItem
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add(_:)))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showSearch(_:)))
         navigationItem.rightBarButtonItem = addButton
         if let split = splitViewController {
             let controllers = split.viewControllers
@@ -41,17 +41,19 @@ class MasterViewController: UITableViewController {
     // MARK: - Actions
     
     @objc
-    func add(_ sender: Any) {
+    func showSearch(_ sender: Any) {
         let searchViewController = SearchViewController()
         searchViewController.delegate = self
-        present(searchViewController, animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: searchViewController)
+        present(navigationController, animated: true, completion: nil)
     }
         
+    
+    // MARK: - Navigation
+    
     fileprivate func showDetail(indexPath: IndexPath, detail controller: GridViewController) {
         let artist = artists[indexPath.row]
         controller.artist = artist
-        controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-        controller.navigationItem.leftItemsSupplementBackButton = true
         detailViewController = controller
     }
     
