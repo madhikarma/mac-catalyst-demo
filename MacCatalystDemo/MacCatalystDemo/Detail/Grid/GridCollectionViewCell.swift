@@ -30,12 +30,17 @@ final class GridCollectionViewCell: UICollectionViewCell {
     // MARK: - Private
     
     private func clearContent() {
-        // TODO: debug
-        
         if Config.shared.isDebugColorsEnabled {
             contentView.backgroundColor = .blue
             backgroundColor = .red
-            backgroundColor = .purple
+            imageView.backgroundColor = .orange
+            titleLabel.backgroundColor = .yellow
+        } else {
+            contentView.backgroundColor = .clear
+            backgroundColor = .clear
+            imageView.backgroundColor = .clear
+            titleLabel.backgroundColor = .clear
+
         }
         
         titleLabel.text = nil

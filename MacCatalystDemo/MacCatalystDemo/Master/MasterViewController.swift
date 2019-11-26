@@ -15,6 +15,7 @@ class MasterViewController: UITableViewController {
     var artists: [iTunesSearchResult] = []
     let searchAPI = iTunesSearchAPI()
 
+    
     // MARK - View lifecycle
     
     override func viewDidLoad() {
@@ -29,26 +30,6 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? GridViewController
         }
-        
-        print("get results...")
-        searchAPI.getResults(searchTerm: "Bonobo") { [weak self] (result) in
-            guard let self = self else {
-                return
-            }
-            switch result {
-            case .success(let searchResults):
-                print("success...")
-                self.artists = searchResults
-                print(searchResults)
-                self.tableView.reloadData()
-                self.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
-            case .failure(let error):
-                print("error...")
-                print(error)
-            }
-        }
-        
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -62,12 +43,21 @@ class MasterViewController: UITableViewController {
     @objc
     func add(_ sender: Any) {
         let searchViewController = SearchViewController()
+        searchViewController.delegate = self
         present(searchViewController, animated: true, completion: nil)
     }
-
+        
+    fileprivate func showDetail(indexPath: IndexPath, detail controller: GridViewController) {
+        let artist = artists[indexPath.row]
+        controller.artist = artist
+        controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+        controller.navigationItem.leftItemsSupplementBackButton = true
+        detailViewController = controller
+    }
     
-    // MARK: - Table View
-
+    
+    // MARK: - UITableViewDataSource
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -87,15 +77,20 @@ class MasterViewController: UITableViewController {
         let controller = (splitViewController?.viewControllers[1] as! UINavigationController).topViewController as! GridViewController
         showDetail(indexPath: indexPath, detail: controller)
     }
-    
-    func showDetail(indexPath: IndexPath, detail controller: GridViewController) {
-        let artist = artists[indexPath.row]
-        print("before: \(String(describing: controller.artist))")
-        controller.artist = artist
-        print("after; \(String(describing: controller.artist))")
-        controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-        controller.navigationItem.leftItemsSupplementBackButton = true
-        detailViewController = controller
-    }
 }
 
+
+// MARK: - SearchViewControllerDelegate
+
+extension MasterViewController: SearchViewControllerDelegate {
+    
+    func searchViewControllerDidPressCancel(_ controller: SearchViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func searchViewControllerDidSelectResult(_ controller: SearchViewController, result: iTunesSearchResult) {
+        artists.append(result)
+        tableView.reloadData()
+        dismiss(animated: true, completion: nil)
+    }
+}

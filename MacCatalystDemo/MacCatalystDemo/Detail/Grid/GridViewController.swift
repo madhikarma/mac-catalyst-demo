@@ -62,7 +62,7 @@ class GridViewController: UIViewController {
             self.collectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
         ])
         view.backgroundColor = .darkGray
-        
+        collectionView.backgroundColor = .darkGray
         let searchField = UISearchTextField(frame: CGRect(x: 0, y: 0, width: view.frame.size.width / 6, height: 44))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchField)
     }
