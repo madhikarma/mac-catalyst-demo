@@ -14,7 +14,8 @@ final class AlbumScrollViewController: UIPageViewController {
     private var orderedViewControllers: [AlbumViewController] = []
     private(set) var albums: [Album] = []
     private let imageManager: ImageManager
-
+    var firstAlbumIndex: Int = 0
+    
     init(albums: [Album], imageManager: ImageManager) {
         self.albums = albums
         self.imageManager = imageManager
@@ -31,15 +32,19 @@ final class AlbumScrollViewController: UIPageViewController {
     override func viewDidLoad() {
         dataSource = self
 
-        view.backgroundColor = .brown
-        
+        if Config.shared.isDebugColorsEnabled {
+            view.backgroundColor = .brown
+        }
+        view.backgroundColor = .darkGray
         for (index, album) in albums.enumerated() {
             let vc = AlbumViewController(album: album, imageManager: imageManager)
             vc.index = index
             orderedViewControllers.append(vc)
         }
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didPressCancel))
-        setViewControllers([orderedViewControllers.first!], direction: .forward, animated: false, completion: nil)
+        
+        let initialViewController = orderedViewControllers[firstAlbumIndex]
+        setViewControllers([initialViewController], direction: .forward, animated: false, completion: nil)
     }
     
     
@@ -47,6 +52,17 @@ final class AlbumScrollViewController: UIPageViewController {
     
     @objc func didPressCancel() {
         navigationController?.dismiss(animated: true, completion: nil)
+        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+        let scene = UIApplication.shared.connectedScenes.first
+        if let sd : SceneDelegate = (scene?.delegate as? SceneDelegate) {
+//
+//            let vc = AlbumViewController(album: albums[0], imageManager: imageManager)
+//            vc.modalPresentationStyle = .formSheet
+//            present
+        }
+
+        
+        
     }
 }
 

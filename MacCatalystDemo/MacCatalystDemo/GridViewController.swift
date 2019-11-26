@@ -50,12 +50,8 @@ class GridViewController: UIViewController {
 
         let nib = UINib(nibName: "GridCollectionViewCell", bundle: nil)
         self.collectionView!.register(nib, forCellWithReuseIdentifier: "GridCollectionViewCell")
-
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        
-        self.collectionView.backgroundColor = .green
-        
         view.addSubview(collectionView)
         
         self.collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -65,11 +61,32 @@ class GridViewController: UIViewController {
             self.collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0),
             self.collectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
         ])
+        view.backgroundColor = .darkGray
     }
     
     private func configureView() {
         collectionView.reloadData()
     }
+    
+
+    // MARK: - Actions
+    
+    @objc
+    func hovering(_ recognizer: UIHoverGestureRecognizer) {
+        switch recognizer.state {
+        case .began, .changed:
+            UIView.animate(withDuration: 0.2) {
+                recognizer.view?.backgroundColor = UIColor.darkGray.withAlphaComponent(0.6)
+            }
+        case .ended:
+            UIView.animate(withDuration: 0.2) {
+                recognizer.view?.backgroundColor = .clear
+            }
+        default:
+            break
+        }
+    }
+
 }
 
 
@@ -104,10 +121,9 @@ extension GridViewController: UICollectionViewDataSource {
                 }
             }
         }
-        // TODO: debug
-        cell.contentView.backgroundColor = .blue
-        cell.backgroundColor = .red
-        collectionView.backgroundColor = .purple
+        // works on mac catalyst no op for iPad
+        let hover = UIHoverGestureRecognizer(target: self, action: #selector(hovering(_:)))
+        cell.addGestureRecognizer(hover)
         return cell
     }
 }
@@ -120,7 +136,9 @@ extension GridViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("didSelect")
         let viewController = AlbumScrollViewController(albums: albums, imageManager: imageManager)
+        viewController.firstAlbumIndex = indexPath.row
         let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.modalTransitionStyle = .flipHorizontal
         self.present(navigationController, animated: true, completion: nil)
     }
 }

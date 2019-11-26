@@ -27,6 +27,7 @@ class AlbumView: UIView {
     }
     
     private func setup() {
+        backgroundColor = .darkGray
         addSubview(imageView)
         addSubview(label)
     }

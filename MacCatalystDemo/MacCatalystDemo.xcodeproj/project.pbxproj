@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD3EB737238CDA3700F4865C /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EB736238CDA3700F4865C /* Config.swift */; };
 		CDC3E7AD238C309300D29906 /* AlbumScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC3E7AC238C309300D29906 /* AlbumScrollViewController.swift */; };
 		CDC3E7AF238C4C8200D29906 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC3E7AE238C4C8200D29906 /* AlbumView.swift */; };
 		CDC3E7B1238C4C9A00D29906 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC3E7B0238C4C9A00D29906 /* AlbumViewController.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CD3EB736238CDA3700F4865C /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		CDC3E7AC238C309300D29906 /* AlbumScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumScrollViewController.swift; sourceTree = "<group>"; };
 		CDC3E7AE238C4C8200D29906 /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		CDC3E7B0238C4C9A00D29906 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				CDC3E7AC238C309300D29906 /* AlbumScrollViewController.swift */,
 				CDC3E7AE238C4C8200D29906 /* AlbumView.swift */,
 				CDC3E7B0238C4C9A00D29906 /* AlbumViewController.swift */,
+				CD3EB736238CDA3700F4865C /* Config.swift */,
 			);
 			path = MacCatalystDemo;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				CDCE70392383C342003C7468 /* iTunesSearchResult+Artist.swift in Sources */,
 				CDCE70332383C1AB003C7468 /* GridViewController.swift in Sources */,
 				CDF2DA5223866F29000DD3E0 /* GridCollectionViewCell.swift in Sources */,
+				CD3EB737238CDA3700F4865C /* Config.swift in Sources */,
 				CDCE6FFF2383B8DB003C7468 /* SceneDelegate.swift in Sources */,
 				CDC3E7AD238C309300D29906 /* AlbumScrollViewController.swift in Sources */,
 				CDCE70012383B8DB003C7468 /* MasterViewController.swift in Sources */,

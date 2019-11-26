@@ -31,10 +31,12 @@ class AlbumViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = (index%2 == 0) ? .red : .purple
+        if Config.shared.isDebugColorsEnabled {
+            view.backgroundColor = (index%2 == 0) ? .red : .purple
+        }
         let albumView = (view as! AlbumView)
         albumView.label.text = album.albumName
-        navigationItem.title = album.albumName
+        title = album.albumName
         
         guard let imageURL = album.albumImageURL else { return }
         imageManager.loadImage(for: imageURL, completion: { (result) in
