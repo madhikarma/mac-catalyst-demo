@@ -23,6 +23,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UISplitViewControllerDe
         guard let navigationController = splitViewController.viewControllers.last as? UINavigationController else { return }
         navigationController.topViewController?.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
         navigationController.topViewController?.navigationItem.leftItemsSupplementBackButton = true
+        
+        // Add a translucent background to the primary view controller.
+        splitViewController.primaryBackgroundStyle = .sidebar
         splitViewController.delegate = self
     }
 
