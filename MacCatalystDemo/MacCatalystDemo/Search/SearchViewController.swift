@@ -151,7 +151,7 @@ extension SearchViewController: UISearchResultsUpdating {
             task.cancel()
         }
         
-        let searchTask = searchAPI.getResults(searchTerm: searchBarText) { [weak self] (result) in
+        let searchTask = searchAPI.getResults(searchTerm: searchBarText, parameters: ["entity": "allArtist", "attribute": "allArtistTerm"]) { [weak self] (result) in
             guard let self = self else { return }
             if let previous = self.pendingSearchTasks.last {
                 print("removing last search")
