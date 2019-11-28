@@ -41,8 +41,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UISplitViewControllerDe
         splitViewController.primaryBackgroundStyle = .sidebar
         splitViewController.delegate = self
         
-        // DEMO Toolbar
-        /*
+        // DEMO 2
+       /*
         #if targetEnvironment(macCatalyst)
             if let windowScene = scene as? UIWindowScene {
                 if let titlebar = windowScene.titlebar {
@@ -53,7 +53,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UISplitViewControllerDe
             }
         #endif
         */
-     
     }
     
     @objc func new() {
@@ -71,6 +70,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UISplitViewControllerDe
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        
+        // DEMO 1
+        
+        var platform = ""
+                
+        #if targetEnvironment(macCatalyst)
+            platform += "Catalyst\n"
+        #endif
+        
+        #if os(macOS)
+            platform += "macOS\n"
+        #endif
+        
+        #if os(iOS)
+            platform += "iOS\n"
+        #endif
+        
+        let alert = UIAlertController(title: "Debug", message: platform, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        window!.rootViewController?.present(alert, animated: true, completion: nil)
     }
 
     func sceneWillResignActive(_ scene: UIScene) {

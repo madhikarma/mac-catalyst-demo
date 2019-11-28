@@ -12,51 +12,43 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        
         return true
     }
     
+    // DEMO 3
+    
     override func buildMenu(with builder: UIMenuBuilder) {
         
-        /** First check if the builder object is using the main system menu, which is the main menu bar.
-            If you want to check if the builder is for a contextual menu, check for: UIMenuSystem.context
-         */
-        if builder.system == .main {
-//            menuController = MenuController(with: builder)
-        }
+        // First check if the builder object is using the main system menu, which is the main menu bar.
+        // If you want to check if the builder is for a contextual menu, check for: UIMenuSystem.context
         
-                guard builder.system == .main else { return }
+        guard builder.system == .main else { return }
+        
+        // we don't need `Format` menu in Main menu,
+        // so let's remove it
+        builder.remove(menu: .format)
                 
-                // we don't need `Format` menu in Main menu,
-                // so let's remove it
-                builder.remove(menu: .format)
-                
-        let addNoteCommand = UIKeyCommand(title: "New Note…",
-                                          action: #selector(new),
-                                          input: "f",
-                                          modifierFlags: [.command, .alternate])
-                
-                let menu = UIMenu(title: "",
-                                  image: nil,
-                                  identifier: UIMenu.Identifier(""),
-                                    options: .displayInline,
-                                    children: [addNoteCommand])
-                                
-                builder.insertChild(menu, atStartOfMenu: .file)
+        let addNoteCommand = UIKeyCommand(title: "New…",
+                                      action: #selector(new),
+                                      input: "f",
+                                      modifierFlags: [.command, .alternate])
+        let menu = UIMenu(title: "",
+                          image: nil,
+                          identifier: UIMenu.Identifier(""),
+                          options: .displayInline,
+                          children: [addNoteCommand])
+        builder.insertChild(menu, atStartOfMenu: .file)
     }
     
     @objc
     func new() {
-        
+        print(#function)
     }
     
     // MARK: UISceneSession Lifecycle
-
+/*
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
@@ -68,7 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
-
+ */
 }
 

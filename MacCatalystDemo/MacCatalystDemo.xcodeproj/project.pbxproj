@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CD3EB737238CDA3700F4865C /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EB736238CDA3700F4865C /* Config.swift */; };
-		CD3EB739238CDF7200F4865C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD3EB738238CDF7200F4865C /* Settings.bundle */; };
+		CD804C8823901FCD00FCFF95 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD3EB738238CDF7200F4865C /* Settings.bundle */; };
 		CD972963238CE42000A71656 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD972962238CE42000A71656 /* SearchViewController.swift */; };
 		CDC3E7AD238C309300D29906 /* AlbumScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC3E7AC238C309300D29906 /* AlbumScrollViewController.swift */; };
 		CDC3E7AF238C4C8200D29906 /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC3E7AE238C4C8200D29906 /* AlbumView.swift */; };
@@ -351,7 +351,7 @@
 			files = (
 				CDF2DA5323866F29000DD3E0 /* GridCollectionViewCell.xib in Resources */,
 				CDCE700B2383B8DC003C7468 /* LaunchScreen.storyboard in Resources */,
-				CD3EB739238CDF7200F4865C /* Settings.bundle in Resources */,
+				CD804C8823901FCD00FCFF95 /* Settings.bundle in Resources */,
 				CDCE70082383B8DC003C7468 /* Assets.xcassets in Resources */,
 				CDCE70062383B8DB003C7468 /* Main.storyboard in Resources */,
 			);

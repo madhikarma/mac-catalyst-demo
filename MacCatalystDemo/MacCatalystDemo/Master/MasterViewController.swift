@@ -42,10 +42,11 @@ class MasterViewController: UITableViewController {
     
     @objc
     func showSearch() {
+        // DEMO 4
         let searchViewController = SearchViewController()
         searchViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: searchViewController)
-        navigationController.modalPresentationStyle = .overCurrentContext // DEMO
+      //  navigationController.modalPresentationStyle = .formSheet
         present(navigationController, animated: true, completion: nil)
     }
         

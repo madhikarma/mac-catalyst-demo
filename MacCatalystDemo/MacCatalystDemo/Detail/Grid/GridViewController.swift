@@ -79,8 +79,15 @@ class GridViewController: UIViewController {
         collectionView.backgroundColor = .darkGray
         let searchField = UISearchTextField(frame: CGRect(x: 0, y: 0, width: view.frame.size.width / 6, height: 44))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: searchField)
+        
+//        let refresh = UIRefreshControl()
+//        refresh.addTarget(self, action: #selector(refresh), for: .valueChanged)
+//        collectionView.refreshControl = refresh
     }
     
+    @objc
+    func refresh() { }
+        
     private func configureView() {
         collectionView.reloadData()
     }
@@ -94,7 +101,7 @@ class GridViewController: UIViewController {
         switch recognizer.state {
         case .began, .changed:
             UIView.animate(withDuration: 0.2) {
-                recognizer.view?.backgroundColor = UIColor.darkGray.withAlphaComponent(0.6)
+                recognizer.view?.backgroundColor = UIColor.green.withAlphaComponent(0.6)
             }
         case .ended:
             UIView.animate(withDuration: 0.2) {
@@ -140,11 +147,11 @@ extension GridViewController: UICollectionViewDataSource {
             }
         }
         
-        // DEMO Hover
-        #if os(macOS)
+        // DEMO 6
+//        #if targetEnvironment(macCatalyst)
             let hover = UIHoverGestureRecognizer(target: self, action: #selector(hovering(_:)))
             cell.addGestureRecognizer(hover)
-        #endif
+//        #endif
         return cell
     }
 }
@@ -154,14 +161,13 @@ extension GridViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 
 extension GridViewController: UICollectionViewDelegate {
-    // DEMO
+    // DEMO 6
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("didSelect")
         let viewController = AlbumScrollViewController(albums: albums, imageManager: imageManager)
         viewController.firstAlbumIndex = indexPath.row
         let navigationController = UINavigationController(rootViewController: viewController)
- // DEMO
         navigationController.modalTransitionStyle = .flipHorizontal
         self.present(navigationController, animated: true, completion: nil)
     }

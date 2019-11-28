@@ -52,18 +52,14 @@ final class AlbumScrollViewController: UIPageViewController {
     
     @objc func didPressCancel() {
         navigationController?.dismiss(animated: true, completion: nil)
-        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-        let scene = UIApplication.shared.connectedScenes.first
-        if let sd : SceneDelegate = (scene?.delegate as? SceneDelegate) {
+//        let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
+//        let scene = UIApplication.shared.connectedScenes.first
+//        if let sceneDelegate = scene?.delegate as? SceneDelegate {
 //
 //            let vc = AlbumViewController(album: albums[0], imageManager: imageManager)
 //            vc.modalPresentationStyle = .formSheet
 //            present
         }
-
-        
-        
-    }
 }
 
 
