@@ -78,6 +78,7 @@ class GridViewController: UIViewController {
 
     // MARK: - Actions
     
+    // MacCatalystDemo[32430:891801] [Warning] -[UIApplication _hoverEventForWindow:]_block_invoke has no affect on this platform
     @objc
     func hovering(_ recognizer: UIHoverGestureRecognizer) {
         switch recognizer.state {
