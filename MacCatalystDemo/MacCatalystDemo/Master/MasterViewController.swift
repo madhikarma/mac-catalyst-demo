@@ -24,7 +24,7 @@ class MasterViewController: UITableViewController {
         // Do any additional setup after loading the view.
         navigationItem.leftBarButtonItem = editButtonItem
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showSearch(_:)))
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showSearch))
         navigationItem.rightBarButtonItem = addButton
         if let split = splitViewController {
             let controllers = split.viewControllers
@@ -41,10 +41,11 @@ class MasterViewController: UITableViewController {
     // MARK: - Actions
     
     @objc
-    func showSearch(_ sender: Any) {
+    func showSearch() {
         let searchViewController = SearchViewController()
         searchViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: searchViewController)
+        navigationController.modalPresentationStyle = .overCurrentContext // DEMO
         present(navigationController, animated: true, completion: nil)
     }
         

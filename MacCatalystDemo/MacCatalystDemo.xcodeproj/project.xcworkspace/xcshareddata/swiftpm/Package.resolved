@@ -15,8 +15,8 @@
         "repositoryURL": "git@github.com:madhikarma/itunes-api-swift.git",
         "state": {
           "branch": null,
-          "revision": "70d8b811a3ff35122bdeda7b4eb1245b990f9975",
-          "version": "0.3.0"
+          "revision": "3c43bf1920a509402a8125e3764741f8a8730dfb",
+          "version": "0.4.0"
         }
       }
     ]

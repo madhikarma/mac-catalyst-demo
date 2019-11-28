@@ -9,11 +9,16 @@
 import UIKit
 import iTunesAPI
 import ImageManager
+import MobileCoreServices
 
 private let reuseIdentifier = "GridCollectionViewCell"
 
 class GridViewController: UIViewController {
 
+    var imageFiles = [String]()
+    var images = [UIImage]()
+
+    
     // UI
     private(set) var collectionView: UICollectionView!
     
@@ -29,7 +34,12 @@ class GridViewController: UIViewController {
             itunesAPI.lookup(id: id, parameters: ["entity": "album"]) { (result) in
                 switch result {
                 case .success(let values):
-                    self.albums = values
+                    self.albums = values.filter({ (result) -> Bool in
+                        if let _ = result.albumName {
+                            return true
+                        }
+                        return false
+                    })
                     self.configureView()
                 case .failure(let error):
                     print(error)
@@ -129,9 +139,12 @@ extension GridViewController: UICollectionViewDataSource {
                 }
             }
         }
-        // works on mac catalyst no op for iPad
-        let hover = UIHoverGestureRecognizer(target: self, action: #selector(hovering(_:)))
-        cell.addGestureRecognizer(hover)
+        
+        // DEMO Hover
+        #if os(macOS)
+            let hover = UIHoverGestureRecognizer(target: self, action: #selector(hovering(_:)))
+            cell.addGestureRecognizer(hover)
+        #endif
         return cell
     }
 }
@@ -141,11 +154,14 @@ extension GridViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 
 extension GridViewController: UICollectionViewDelegate {
+    // DEMO
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("didSelect")
         let viewController = AlbumScrollViewController(albums: albums, imageManager: imageManager)
         viewController.firstAlbumIndex = indexPath.row
         let navigationController = UINavigationController(rootViewController: viewController)
+ // DEMO
         navigationController.modalTransitionStyle = .flipHorizontal
         self.present(navigationController, animated: true, completion: nil)
     }
@@ -176,19 +192,73 @@ extension GridViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - UICollectionViewDragDelegate
 
+//extension GridViewController: UICollectionViewDragDelegate {
+//
+////    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+////
+////    }
+//
+//}
+//
+
+
+// MARK: - UICollectionViewDropDelegate
+
+/*
 extension GridViewController: UICollectionViewDropDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
-        
-    }
-
     
-    /* If NO is returned no further delegate methods will be called for this drop session.
-     * If not implemented, a default value of YES is assumed.
-     */
-//    optional func collectionView(_ collectionView: UICollectionView, canHandle session: UIDropSession) -> Bool {
-//
-//    }
+    func collectionView(_ collectionView: UICollectionView, canHandle session: UIDropSession) -> Bool {
+        return session.hasItemsConforming(toTypeIdentifiers: [kUTTypeImage as String])
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
+        print(#function)
+        
+        let destinationIndexPath =
+           coordinator.destinationIndexPath ?? IndexPath(item: 0, section: 0)
+        
+        switch coordinator.proposal.operation {
+            case .copy:
+                
+                let items = coordinator.items
+                
+                for item in items {
+                    item.dragItem.itemProvider.loadObject(ofClass: UIImage.self,
+                completionHandler: {(newImage, error)  -> Void in
+                        
+                    if var image = newImage as? UIImage {
+                        if image.size.width > 200 {
+                            image = self.scaleImage(image: image, width: 200)
+                        }
+                    
+                        self.images.insert(image, at: destinationIndexPath.item)
+                        
+                        DispatchQueue.main.async {
+                            collectionView.insertItems(
+                                    at: [destinationIndexPath])
+                        }
+                    }
+                })
+            }
+            default: return
+        }
+
+    }
+    
+    func scaleImage (image:UIImage, width: CGFloat) -> UIImage {
+        let oldWidth = image.size.width
+        let scaleFactor = width / oldWidth
+        
+        let newHeight = image.size.height * scaleFactor
+        let newWidth = oldWidth * scaleFactor
+        
+        UIGraphicsBeginImageContext(CGSize(width:newWidth, height:newHeight))
+        image.draw(in: CGRect(x:0, y:0, width:newWidth, height:newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
 
     
     /* Called when the drop session begins tracking in the collection view's coordinate space.
@@ -235,3 +305,4 @@ extension GridViewController: UICollectionViewDropDelegate {
 //    }
 
 }
+*/

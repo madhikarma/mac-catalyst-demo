@@ -11,7 +11,20 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate, UISplitViewControllerDelegate {
 
     var window: UIWindow?
-
+    var master: MasterViewController? {
+        guard let window = window else { return nil }
+        guard let splitViewController = window.rootViewController as? UISplitViewController else { return nil}
+        guard let navigationController = splitViewController.viewControllers.first as? UINavigationController else { return nil }
+        return navigationController.topViewController as? MasterViewController
+    }
+    
+    var detail: GridViewController? {
+        guard let window = window else { return nil }
+        guard let splitViewController = window.rootViewController as? UISplitViewController else { return nil }
+        guard let navigationController = splitViewController.viewControllers.last as? UINavigationController else { return nil }
+        return navigationController.topViewController as? GridViewController
+    }
+    
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         print("willConnectTo")
@@ -23,12 +36,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UISplitViewControllerDe
         guard let navigationController = splitViewController.viewControllers.last as? UINavigationController else { return }
         navigationController.topViewController?.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
         navigationController.topViewController?.navigationItem.leftItemsSupplementBackButton = true
-        
+        splitViewController.preferredDisplayMode = .allVisible
         // Add a translucent background to the primary view controller.
         splitViewController.primaryBackgroundStyle = .sidebar
         splitViewController.delegate = self
+        
+        // DEMO Toolbar
+        /*
+        #if targetEnvironment(macCatalyst)
+            if let windowScene = scene as? UIWindowScene {
+                if let titlebar = windowScene.titlebar {
+                    let toolbar = NSToolbar(identifier: "myIdentifier")
+                    toolbar.delegate = self
+                    titlebar.toolbar = toolbar
+                }
+            }
+        #endif
+        */
+     
     }
-
+    
+    @objc func new() {
+        master!.showSearch()
+    }
+    
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
@@ -72,3 +104,43 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UISplitViewControllerDe
 
 }
 
+
+#if targetEnvironment(macCatalyst)
+
+let newToolbarItemId = NSToolbarItem.Identifier(rawValue: "newToolbarItemId")
+
+extension SceneDelegate: NSToolbarDelegate {
+    
+    
+    func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
+        let item = NSToolbarItem(itemIdentifier: itemIdentifier)
+        item.action = #selector(new)
+        item.target = self
+        item.image = UIImage(systemName: "airplayaudio")
+        return item
+    }
+
+    func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+        print(#function)
+        return [newToolbarItemId]
+    }
+
+    func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+        print(#function)
+        return [newToolbarItemId]
+    }
+
+    func toolbarSelectableItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+        print(#function)
+        return [newToolbarItemId]
+    }
+
+    func toolbarWillAddItem(_ notification: Notification) {
+        print(#function)
+    }
+
+    func toolbarDidRemoveItem(_ notification: Notification) {
+        print(#function)
+    }
+}
+#endif

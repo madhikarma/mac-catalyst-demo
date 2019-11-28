@@ -64,6 +64,7 @@ final class SearchViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
         ])
         
+//        navigationController?.setNavigationBarHidden(true, animated: false)
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didPressCancel))
     }
     
@@ -79,6 +80,12 @@ extension SearchViewController: UISearchBarDelegate {
         print("\(#function)")
 //        searchController.dismiss(animated: true, completion: nil)
 //        searchController.isActive = false
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("\(#function)")
+        searchResults.removeAll()
+        tableView.reloadData()
     }
 }
 
